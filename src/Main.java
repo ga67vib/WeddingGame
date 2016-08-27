@@ -8,11 +8,11 @@ import javafx.util.Pair;
  */
 public class Main {
 
-    private LayoutThing lt;
+    private Layout lt;
     private HashSet<Pair<String,String>> titles;
 
     public Main() {
-        this.lt = new LayoutThing(this);
+        this.lt = new Layout(this);
         this.titles = new HashSet<Pair<String,String>>();
     }
     

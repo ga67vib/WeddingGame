@@ -2,12 +2,12 @@
  *
  * @author Maxi
  */
-public class LayoutThing {
+public class Layout {
 
-    private Main m;
+    private Main main;
     
-    public LayoutThing(Main m) {
-        this.m = m;
+    public Layout(Main main) {
+        this.main = main;
     }
 
     public void display(Internal a) {
@@ -29,8 +29,8 @@ public class LayoutThing {
             //ende -> m.endgame()
             //quiz -> m.startQuiz()
     }
-    public void displayQuestion(){
-        //TODO Andi/Leo? Sprecht euch ab, definiert Schnittstellen
+    public void displayQuestion(String author, String title){
+        //TODO display question and after an answer display the solution, then return nothing
     }
     
     public void close(){
