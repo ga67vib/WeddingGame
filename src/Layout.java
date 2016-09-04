@@ -8,6 +8,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineBreakMeasurer;
 import java.awt.font.TextAttribute;
@@ -15,20 +18,27 @@ import java.awt.font.TextLayout;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 /**
  *
  * @author Andi
  */
 public class Layout {
-    
+
     JFrame frame;
     myPanel panel;
     BufferStrategy bufferStrat;
@@ -43,15 +53,10 @@ public class Layout {
 
     private Cursor cursor;
 
-    private final Main main;
-    
-    public Layout(Main main) {
-        this.main = main;
-        
-        init();
+    public Layout() {
     }
 
-    private void initCursor() {
+    public void initCursor() {
         try {
             cursor = Toolkit.getDefaultToolkit().createCustomCursor(ImageIO.read(new File("res/Cursor.png")), new Point(16, 16), "CustomCursor");
         } catch (IOException e) {
@@ -59,7 +64,7 @@ public class Layout {
         }
     }
 
-    private void setBackground(String path) {
+    public void setBackground(String path) {
         try {
             background = ImageIO.read(new File(path));
         } catch (IOException e) {
@@ -67,7 +72,26 @@ public class Layout {
         }
     }
 
-    private void init() {
+    private void playAudioFile(String path) {
+        String soundFile = path;
+        try {
+            InputStream in = new FileInputStream(soundFile);
+
+            // create an audiostream from the inputstream, turn into audiodata and then into continuous stream for looping
+            AudioStream audioStream = new AudioStream(in);
+            AudioData audiodata = audioStream.getData();
+            ContinuousAudioDataStream loopMusic = new ContinuousAudioDataStream(audiodata);
+
+            // play the audio clip with the audioplayer class
+            AudioPlayer.player.start(loopMusic);
+
+            // AudioPlayer.player.stop(audioStream);  // stops the audiostream sound
+        } catch (Exception e) {
+            System.err.println("Something with the audio failed; check filename & if file is really there: " + path);
+        }
+    }
+
+    public void init() {
         frame = new JFrame();
         frame.setSize(windowSizeX, windowSizeY);
         frame.setLocation(screenSize.width / 2 - frame.getWidth() / 2, screenSize.height / 2 - frame.getHeight() / 2);
@@ -98,24 +122,14 @@ public class Layout {
 
         frame.createBufferStrategy(2);
         bufferStrat = frame.getBufferStrategy();
-    }
-    
-    private BufferedImage loadImage(String path) {
-        BufferedImage image = null;
-        
-        try {
-            image = ImageIO.read(new File(path));
-        } catch (IOException e) {
-            System.err.println("Couldn't load Textbox!");
-        }
-        
-        return image;
+
+        //playAudioFile("res/001Cry.wav");
     }
 
-    private void paint(String text) {
+    public void paint(String text) {
         Graphics2D graphics = (Graphics2D) panel.getGraphics();
 
-        panel.paintComponent(text, bufferStrat, background, textBox);
+        panel.paintComponent(text, bufferStrat, background);
 
         try {
             Thread.sleep(30);
@@ -123,46 +137,92 @@ public class Layout {
         }
     }
 
+    public void run(String text) {
+        int i = 0;
+        while (true) {
+            paint(text);
 
+            try {
+                Thread.sleep(30);
+            } catch (Exception e) {
+            }
+
+            if (panel.clicked && i == 0) {
+                text = "hey this is a new text lol";
+                panel.clicked = false;
+
+                i++;
+            }
+            if (panel.clicked && i == 1) {
+                String[] newQuestions = {"this is a test question", "So is this", "yep, testing"};
+                panel.setQuestions(newQuestions);
+                i++;
+            }
+
+            if (!panel.selectedAnswer.equals("")) {
+                System.out.println(panel.selectedAnswer);
+                panel.cleanupQuestions();
+            }
+
+            if (!panel.remains.equals("")) {
+                text = panel.remains;
+            }
+        }
+    }
+
+    // get main method that calls display with 2 internals to test
+    // 
+    
     public void display(Internal internal) {
         //TODO Andi
         //Hab einfach mal alle beschreibenden Kommentare hier rein gepasted
-        
+
         //zeigt Bild, Text, Sound
         setBackground(internal.getPicturePath());  // what if we don't have an image? Load a default?
         // TODO: load sound here
-        
-        
+
         //Triggers on Button press nextStep(String path)  //path aus der entscheidung
-        
-        /** > bild zeigen, klicken, textbox mit semitransparenz(auf bild), mehr klicks, mehr text
-            > Buttons am Ende erste zeigen
-            > Skip Button, damit die Entscheidungsbuttons erscheinen*/
-        paint(internal.getStory().get(0));
-    
+        /**
+         * > bild zeigen, klicken, textbox mit semitransparenz(auf bild), mehr
+         * klicks, mehr text > Buttons am Ende erste zeigen > Skip Button, damit
+         * die Entscheidungsbuttons erscheinen
+         */
+        paint(internal.getStory().get(0));  // TODO: iterate over stuff and choose appropriate next text.. need buttons first doe
+
     }
-    
-    public void DisplayEndDialouge(){
+
+    public void DisplayEndDialouge() {
         //TODO Andi
         //pop-up, select either:
-            //neustart -> m.nextStep(Intro001.txt)
-            //ende -> m.endgame()
-            //quiz -> m.startQuiz()
+        //neustart -> m.nextStep(Intro001.txt)
+        //ende -> m.endgame()
+        //quiz -> m.startQuiz()
     }
-    public void displayQuestion(String author, String title){
+
+    public void displayQuestion(String author, String title) {
         //TODO display question and after an answer display the solution, then return nothing
     }
-    
-    public void close(){
+
+    public void close() {
         //weiß nicht, ob man das braucht; halt Fenster schließen und so. Könnte aber auch überflüssig sein.
     }
 
-    
 }
 
-class myPanel extends JPanel {
+class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
-    Font font;
+    Font questionFont = new Font("Consolas", Font.ITALIC, 30);
+    BufferedImage textBox;
+    BufferedImage questionBox;
+    BufferedImage questionBoxHighlight;
+
+    String[] questions = new String[0];
+    ArrayList<QuestionBox> questionBoxes = new ArrayList<>();
+    String selectedAnswer = "";
+    String remains = "";
+
+    public boolean clicked = false;
+
     private static final Hashtable<TextAttribute, Object> map = new Hashtable<>();
 
     static {
@@ -173,6 +233,17 @@ class myPanel extends JPanel {
     public myPanel() {
         super();
         super.setBackground(Color.BLACK);
+
+        try {
+            textBox = ImageIO.read(new File("res/textBox.png"));
+            questionBox = ImageIO.read(new File("res/questionBox.png"));
+            questionBoxHighlight = ImageIO.read(new File("res/questionBoxHighlight.png"));
+        } catch (IOException e) {
+            System.err.println("Couldn't load background!");
+        }
+
+        this.addMouseMotionListener(this);
+        this.addMouseListener(this);
     }
 
     private final int drawPosX = 200;
@@ -180,27 +251,78 @@ class myPanel extends JPanel {
     private final int startDrawPosY = 70;
     private final int breakHeight = 620;
 
-    public void paintComponent(String text, BufferStrategy bufferStrat, BufferedImage background, BufferedImage textBox) {
+    public int currentMouseX = 0;
+    public int currentMouseY = 0;
+
+    public void paintComponent(String text, BufferStrategy bufferStrat, BufferedImage background) {
         Graphics2D graphics = (Graphics2D) bufferStrat.getDrawGraphics();
         super.paintComponent(graphics);
 
-        paintBackgroundAndBoxes(graphics, background, textBox);
+        paintBackgroundAndBoxes(graphics, background);
 
         configureFont(graphics);
         //AttributedString textAtt = new AttributedString(text, map);
-        String remains = drawFormattedStringAndReturnRemains(text, graphics);
+        remains = drawFormattedStringAndReturnRemains(text, graphics);
 
-        //graphics.drawString(text, 50, 300);
+        //String[] questions = {"this is a test question", "So is this", "yep, testing"};
+        drawQuestions(questions, graphics);
         graphics.dispose();
         bufferStrat.show();
 
         if (!remains.isEmpty()) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(30);
             } catch (Exception e) {
             }
             System.exit(0);
         }
+    }
+
+    public void setQuestions(String[] questions) {
+        this.questions = questions;
+
+        int drawY = 100;
+        int drawX = 300;
+
+        int boxW = 750;
+        int boxH = 72;
+
+        int index = 0;
+
+        for (String question : questions) {
+            this.questionBoxes.add(new QuestionBox(drawX, drawY, boxW, boxH, index));
+            drawY += 75;
+            index++;
+        }
+    }
+
+    public void cleanupQuestions() {
+        this.questions = new String[0];
+        this.questionBoxes = new ArrayList<>();
+        this.selectedAnswer = "";
+    }
+
+    private void drawQuestions(String[] questions, Graphics2D graphics) {
+
+        for (QuestionBox questionbox : questionBoxes) {
+
+            // draw highlighted box if mouse is hovering over it, otherwise draw regular box
+            if (mouseInRect(questionbox.x, questionbox.y, questionbox.w, questionbox.h)) {
+                graphics.drawImage(questionBoxHighlight, questionbox.x, questionbox.y, null);
+            } else {
+                graphics.drawImage(questionBox, questionbox.x, questionbox.y, null);
+            }
+
+            graphics.drawString(questions[questionbox.index], 325, questionbox.y + 45);
+        }
+    }
+
+    private boolean mouseInRect(int x, int y, int w, int h) {
+        return (currentMouseX > x && currentMouseX < x + w && currentMouseY > y && currentMouseY < y + h);
+    }
+
+    private boolean mouseInRect(QuestionBox qbox) {
+        return mouseInRect(qbox.x, qbox.y, qbox.w, qbox.h);
     }
 
     private String drawFormattedStringAndReturnRemains(String stringText, Graphics2D graphics) {
@@ -228,7 +350,7 @@ class myPanel extends JPanel {
             drawPosY += layout.getAscent();
 
             // Draw the TextLayout at (drawPosX,drawPosY).
-            System.out.println(drawPosX + " / " + drawPosY);
+            // System.out.println(drawPosX + " / " + drawPosY);
             layout.draw(graphics, drawPosX, drawPosY);
 
             // Move y-coordinate in preparation for next
@@ -244,21 +366,73 @@ class myPanel extends JPanel {
         return "";
     }
 
-    private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background, BufferedImage textBox) {
+    private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background) {
         graphics.drawImage(background, 0, 0, null);
         graphics.drawImage(textBox, 500, 0, null);
     }
 
     private void configureFont(Graphics2D graphics) {
-        graphics.setFont(font);
+        graphics.setFont(questionFont);
         graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
     }
 
     private int getTextSize(String text, Graphics2D graphics) {
-        FontMetrics metrics = graphics.getFontMetrics(font);
+        FontMetrics metrics = graphics.getFontMetrics(questionFont);
 
         return metrics.stringWidth(text) + 2;
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        currentMouseX = e.getX();
+        currentMouseY = e.getY();
+
+        //System.out.println("Mouse moved" + e.getX() + " / " + e.getY());
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        currentMouseX = e.getX();
+        currentMouseY = e.getY();
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        if (questions.length > 0) {
+            for (QuestionBox questBox : questionBoxes) {
+                if (mouseInRect(questBox)) {
+                    selectedAnswer = questions[questBox.index];
+                    //System.out.println(questions[questBox.index]);
+                }
+            }
+        } else { //TODO: replace setQuestions with clicked = true here!
+            clicked = true;
+        }
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseClicked(MouseEvent e) {
+    }
+}
+
+class QuestionBox {
+
+    int x, y, w, h, index;
+
+    public QuestionBox(int x, int y, int w, int h, int index) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.index = index;
     }
 }
