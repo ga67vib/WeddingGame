@@ -56,6 +56,7 @@ public class Layout {
     private Cursor cursor;
 
     public Layout(Main main) {
+        this.main = main;
     }
 
     public void initCursor() {
@@ -177,8 +178,8 @@ public class Layout {
         ArrayList<String> story = new ArrayList<>();
         story.add("this is the first part of the storythis is the first part of "
                 + "the storythis is the first part of the storythis is the first "
-                + "part of the storythis is the first part of the storythis is the "
-                + "first part of the storythis is the first part of the storythis is "
+                + "first part of the storythis is the first part of the storyt                + \"part of the storythis is the first part of the storythis is the \"\n"
+                + "his is "
                 + "the first part of the storythis is the first part of the storythis is"
                 + " the first part of the storythis is the first part of the storythis is "
                 + "the first part of the storythis is the first part of the storythis is the fir"
@@ -223,15 +224,16 @@ public class Layout {
 
         boolean done = false;
         while (!done) {
+            String textToDraw = panel.currentlyDrawnText;
+
             if (panel.clicked) {
                 if (!panel.remains.equals("")) {
-                    paint(panel.remains);
+                    textToDraw = panel.remains;
                 } else {
-                    System.out.println("Setting questions!!");
 
                     ArrayList<Decision> decisions = internal.getDecisions();
                     String[] questions = new String[decisions.size()];
-                    
+
                     int i = 0;
                     for (Decision decision : decisions) {
                         questions[i] = decision.getDescription();
@@ -242,13 +244,18 @@ public class Layout {
                 }
 
                 if (!panel.selectedAnswer.equals("")) {
-                    System.out.println("xxxxxxxxxx answer was selected!!!");
-                    main.nextStep(panel.selectedAnswer);  // This never really returns, so uh.. that's kinda shitty no?
+                    String selectedAnswer = panel.selectedAnswer;
                     panel.cleanupQuestions();
+                    System.out.println("xxxxxxxxxx answer was selected!!!" + selectedAnswer);
+
+                    DisplayEndDialogue();
+                    main.nextStep(selectedAnswer);  // This never really returns, so uh.. that's kinda shitty, no?
                 }
 
                 panel.clicked = false;
             }
+
+            paint(textToDraw);
 
             // dont remove this or things wont work (cuz busy waiting fucks with key presses?)
             try {
@@ -258,12 +265,34 @@ public class Layout {
         }
     }
 
-    public void DisplayEndDialouge() {
+    public void DisplayEndDialogue() {
         //TODO Andi
         //pop-up, select either:
         //neustart -> m.nextStep(Intro001.txt)
         //ende -> m.endgame()
         //quiz -> m.startQuiz()
+
+        // TODO: maybe reset panel state first?
+        String[] questions = {"Neustart", "Ende", "Quiz"};
+        panel.setQuestions(questions);
+
+        boolean done = false;
+        while (!done) {
+            if (!panel.selectedAnswer.equals("")) {
+                String selectedAnswer = panel.selectedAnswer;
+                panel.cleanupQuestions();
+                
+                if (selectedAnswer.equals("Neustart")) {
+                    main.nextStep("Intro001.txt");
+                } else if (selectedAnswer.equals("Ende")) {
+                    main.endGame();
+                }
+                else if (selectedAnswer.equals("Quiz")) {
+                    main.startQuiz();
+                }
+            }
+            paint(" ");
+        }
     }
 
     public void displayQuestion(String author, String title) {
@@ -287,6 +316,8 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     ArrayList<QuestionBox> questionBoxes = new ArrayList<>();
     String selectedAnswer = "";
     String remains = "";
+
+    String currentlyDrawnText = "";
 
     public boolean clicked = false;
 
@@ -342,7 +373,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
         this.questions = questions;
 
         int drawY = 100;
-        int drawX = 300;
+        int drawX = 265;
 
         int boxW = 750;
         int boxH = 72;
@@ -363,10 +394,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     private void drawQuestions(String[] questions, Graphics2D graphics) {
-        System.out.println("drawing questions!");
-        
         for (QuestionBox questionbox : questionBoxes) {
-            System.out.println("drawing specific questions!!");
             // draw highlighted box if mouse is hovering over it, otherwise draw regular box
             if (mouseInRect(questionbox.x, questionbox.y, questionbox.w, questionbox.h)) {
                 graphics.drawImage(questionBoxHighlight, questionbox.x, questionbox.y, null);
@@ -378,15 +406,17 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
         }
     }
 
-    private boolean mouseInRect(int x, int y, int w, int h) {
+    public boolean mouseInRect(int x, int y, int w, int h) {
         return (currentMouseX > x && currentMouseX < x + w && currentMouseY > y && currentMouseY < y + h);
     }
 
-    private boolean mouseInRect(QuestionBox qbox) {
+    public boolean mouseInRect(QuestionBox qbox) {
         return mouseInRect(qbox.x, qbox.y, qbox.w, qbox.h);
     }
 
     private String drawFormattedStringAndReturnRemains(String stringText, Graphics2D graphics) {
+        currentlyDrawnText = stringText;
+
         AttributedString text = new AttributedString(stringText, map);
 
         AttributedCharacterIterator paragraph = text.getIterator();
@@ -420,7 +450,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
             if (drawPosY > breakHeight) {
                 String remainingText = stringText.substring(lineMeasurer.getPosition());
-                System.out.println(remainingText);
+                //  System.out.println(remainingText);
                 return remainingText;
             }
         }
@@ -429,7 +459,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
     private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background) {
         graphics.drawImage(background, 0, 0, null);
-        graphics.drawImage(textBox, 500, 0, null);
+        graphics.drawImage(textBox, 150, 50, null);
     }
 
     private void configureFont(Graphics2D graphics) {
@@ -449,8 +479,6 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseMoved(MouseEvent e) {
         currentMouseX = e.getX();
         currentMouseY = e.getY();
-
-        //System.out.println("Mouse moved" + e.getX() + " / " + e.getY());
     }
 
     @Override
@@ -465,6 +493,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
                 if (mouseInRect(questBox)) {
                     selectedAnswer = questions[questBox.index];
                     //System.out.println(questions[questBox.index]);
+                    clicked = true;
                 }
             }
         } else {
