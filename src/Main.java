@@ -26,7 +26,7 @@ public class Main {
         try {
             a = TXTReader.readTXT(path);
         } catch (Exception e) {
-            System.err.println("path " + path + " not found");
+            System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
         }
         rememberTitle(a.getTitle(), a.getAuthor());
         layout.display(a);
