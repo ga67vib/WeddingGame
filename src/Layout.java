@@ -51,6 +51,8 @@ public class Layout {
     int windowSizeX = 1280;
     int windowSizeY = 720;
 
+    AudioStream audiostream;
+
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     private Cursor cursor;
@@ -71,11 +73,25 @@ public class Layout {
         try {
             background = ImageIO.read(new File(path));
         } catch (IOException e) {
-            System.err.println("Couldn't load background!");
+            String defaultPath = "res/background.png";
+            System.err.println("Couldn't load background! Loading default background at " + defaultPath + " instead!");
+            try {
+                background = ImageIO.read(new File(defaultPath));
+            } catch (Exception e2) {
+                System.err.println("Couldn't even load default background, RIP");
+            }
+        }
+    }
+
+    private void stopMusic() {
+        if (this.audiostream != null) {
+            AudioPlayer.player.stop(this.audiostream);
         }
     }
 
     private void playAudioFile(String path) {
+        stopMusic(); //stops previous music if it exists
+
         String soundFile = path;
         try {
             InputStream in = new FileInputStream(soundFile);
@@ -87,10 +103,22 @@ public class Layout {
 
             // play the audio clip with the audioplayer class
             AudioPlayer.player.start(loopMusic);
+            this.audiostream = audioStream;
 
             // AudioPlayer.player.stop(audioStream);  // stops the audiostream sound
         } catch (Exception e) {
             System.err.println("Something with the audio failed; check filename & if file is really there: " + path);
+
+            try {
+                InputStream in = new FileInputStream("res/doublebass.wav");
+                AudioStream audioStream = new AudioStream(in);
+                AudioData audiodata = audioStream.getData();
+                ContinuousAudioDataStream loopMusic = new ContinuousAudioDataStream(audiodata);
+                AudioPlayer.player.start(loopMusic);
+                this.audiostream = audioStream;
+            } catch (Exception e2) {
+                System.err.println("Can't even load default background music :(");
+            }
         }
     }
 
@@ -195,14 +223,18 @@ public class Layout {
                 + "rythis is the first part of the story");
         story.add("This be te segund bart :DDD");
         ArrayList<Decision> decisions = new ArrayList<>();
-        decisions.add(new Decision("whoevencareslol", "res/test.txt"));
+        decisions.add(new Decision("Pick me pls I'm the next story!!", "res/test.txt"));
 //muhahaha //fancy //shit - Koko 2016
-        Internal internal = new Internal("Bertfred", "dope story", "res/background.png", "res/001Cry.wav", story, decisions);
+        Internal internal = new Internal("Bertfred", "dope story", "res/background.png", "res/doublebass.wav", story, decisions);
         // String author, String title, String picturePath, String musicPath, ArrayList<String> story, ArrayList<Decision> decisions
 
         Main main = new Main();
         Layout layout = main.layout;
         layout.init();
+
+        layout.displayQuestion("Leo", "Test");
+        layout.displayQuestion("Johannes", "Test2");
+
         layout.display(internal);
     }
 
@@ -211,7 +243,8 @@ public class Layout {
         //Hab einfach mal alle beschreibenden Kommentare hier rein gepasted
 
         //zeigt Bild, Text, Sound
-        setBackground(internal.getPicturePath());  // what if we don't have an image? Load a default?
+        setBackground(internal.getPicturePath());  // Loading default if image path is invalid
+        playAudioFile(internal.getMusicPath()); // plays vivaldi as default if path invalid
         // TODO: load sound here
 
         //Triggers on Button press nextStep(String path)  //path aus der entscheidung
@@ -220,6 +253,20 @@ public class Layout {
          * klicks, mehr text > Buttons am Ende erste zeigen > Skip Button, damit
          * die Entscheidungsbuttons erscheinen
          */
+        //display image only until click
+        while (true) {
+            paint(" ");
+
+            if (panel.clicked) {
+                panel.clicked = false;
+                break;
+            }
+
+            try {
+                Thread.sleep(30);
+            } catch (Exception e) {
+            }
+        }
         paint(internal.getStory().get(0));
 
         boolean done = false;
@@ -248,7 +295,7 @@ public class Layout {
                     panel.cleanupQuestions();
                     System.out.println("xxxxxxxxxx answer was selected!!!" + selectedAnswer);
 
-                    DisplayEndDialogue();
+                    //DisplayEndDialogue();
                     main.nextStep(selectedAnswer);  // This never really returns, so uh.. that's kinda shitty, no?
                 }
 
@@ -281,13 +328,12 @@ public class Layout {
             if (!panel.selectedAnswer.equals("")) {
                 String selectedAnswer = panel.selectedAnswer;
                 panel.cleanupQuestions();
-                
+
                 if (selectedAnswer.equals("Neustart")) {
                     main.nextStep("Intro001.txt");
                 } else if (selectedAnswer.equals("Ende")) {
                     main.endGame();
-                }
-                else if (selectedAnswer.equals("Quiz")) {
+                } else if (selectedAnswer.equals("Quiz")) {
                     main.startQuiz();
                 }
             }
@@ -296,7 +342,53 @@ public class Layout {
     }
 
     public void displayQuestion(String author, String title) {
-        //TODO display question and after an answer display the solution, then return nothing
+        //TODO: Select random names from list (except author), then add author. Can't display all names at once.
+
+        String textToPaint = "Von wem ist die Geschichte mit Titel " + title + "?";
+        while (true) {
+            paint(textToPaint);
+
+            if (panel.clicked) {
+                panel.clicked = false;
+                break;
+            }
+
+            try {
+                Thread.sleep(30);
+            } catch (Exception e) {
+            }
+        }
+
+        String[] questions = {"Leo", "Conny", "Klara", "Johannes", "Maxi", "Jakob", "Andi", "Linda", "Deine Mutter"};
+        panel.setQuestions(questions);
+
+        boolean done = false;
+        while (!done) {
+            if (!panel.selectedAnswer.equals("")) {
+                String selectedAnswer = panel.selectedAnswer;
+                panel.cleanupQuestions();
+
+                if (selectedAnswer.equals(author)) {
+                    textToPaint = ("Richtig! Die Geschichte war von " + author);
+                } else {
+                    textToPaint = ("Falsch! Die Geschichte war von " + author);
+                }
+
+                done = true;
+            }
+            paint(textToPaint);
+            panel.clicked = false;
+        }
+
+        while (!panel.clicked) {
+            paint(textToPaint);
+
+            try {
+                Thread.sleep(30);
+            } catch (Exception e) {
+            }
+        }
+
     }
 
     public void close() {
@@ -309,6 +401,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
     Font questionFont = new Font("Consolas", Font.ITALIC, 30);
     BufferedImage textBox;
+    BufferedImage behindQuestionOverlay;
     BufferedImage questionBox;
     BufferedImage questionBoxHighlight;
 
@@ -336,6 +429,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
             textBox = ImageIO.read(new File("res/textBox.png"));
             questionBox = ImageIO.read(new File("res/questionBox.png"));
             questionBoxHighlight = ImageIO.read(new File("res/questionBoxHighlight.png"));
+            behindQuestionOverlay = ImageIO.read(new File("res/behindQuestionOverlay.png"));
         } catch (IOException e) {
             System.err.println("Couldn't load boxes!");
         }
@@ -394,6 +488,10 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     private void drawQuestions(String[] questions, Graphics2D graphics) {
+        if (!questionBoxes.isEmpty()) {
+            graphics.drawImage(behindQuestionOverlay, 0, 0, null);
+        }
+
         for (QuestionBox questionbox : questionBoxes) {
             // draw highlighted box if mouse is hovering over it, otherwise draw regular box
             if (mouseInRect(questionbox.x, questionbox.y, questionbox.w, questionbox.h)) {
