@@ -39,6 +39,8 @@ import sun.audio.ContinuousAudioDataStream;
  */
 public class Layout {
 
+    Main main;
+
     JFrame frame;
     myPanel panel;
     BufferStrategy bufferStrat;
@@ -53,7 +55,7 @@ public class Layout {
 
     private Cursor cursor;
 
-    public Layout() {
+    public Layout(Main main) {
     }
 
     public void initCursor() {
@@ -113,8 +115,8 @@ public class Layout {
         panel.setIgnoreRepaint(true);
 
         /* frame.addKeyListener(new PlayerController());
-        frame.addMouseListener(MC);
-        frame.addMouseMotionListener(MC);*/
+         frame.addMouseListener(MC);
+         frame.addMouseMotionListener(MC);*/
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
 
@@ -171,8 +173,38 @@ public class Layout {
     }
 
     // get main method that calls display with 2 internals to test
-    // 
-    
+    public static void main(String[] args) {
+        ArrayList<String> story = new ArrayList<>();
+        story.add("this is the first part of the storythis is the first part of "
+                + "the storythis is the first part of the storythis is the first "
+                + "part of the storythis is the first part of the storythis is the "
+                + "first part of the storythis is the first part of the storythis is "
+                + "the first part of the storythis is the first part of the storythis is"
+                + " the first part of the storythis is the first part of the storythis is "
+                + "the first part of the storythis is the first part of the storythis is the fir"
+                + "st part of the storythis is the first part of the storythis is the first part"
+                + " of the storythis is the first part of the storythis is the first part of the sto"
+                + "part of the storythis is the first part of the storythis is the "
+                + "first part of the storythis is the first part of the storythis is "
+                + "the first part of the storythis is the first part of the storythis is"
+                + " the first part of the storythis is the first part of the storythis is "
+                + "the first part of the storythis is the first part of the storythis is the fir"
+                + "st part of the storythis is the first part of the storythis is the first part"
+                + " of the storythis is the first part of the storythis is the first part of the sto"
+                + "rythis is the first part of the story");
+        story.add("This be te segund bart :DDD");
+        ArrayList<Decision> decisions = new ArrayList<>();
+        decisions.add(new Decision("whoevencareslol", "res/test.txt"));
+//muhahaha //fancy //shit - Koko 2016
+        Internal internal = new Internal("Bertfred", "dope story", "res/background.png", "res/001Cry.wav", story, decisions);
+        // String author, String title, String picturePath, String musicPath, ArrayList<String> story, ArrayList<Decision> decisions
+
+        Main main = new Main();
+        Layout layout = main.layout;
+        layout.init();
+        layout.display(internal);
+    }
+
     public void display(Internal internal) {
         //TODO Andi
         //Hab einfach mal alle beschreibenden Kommentare hier rein gepasted
@@ -187,8 +219,43 @@ public class Layout {
          * klicks, mehr text > Buttons am Ende erste zeigen > Skip Button, damit
          * die Entscheidungsbuttons erscheinen
          */
-        paint(internal.getStory().get(0));  // TODO: iterate over stuff and choose appropriate next text.. need buttons first doe
+        paint(internal.getStory().get(0));
 
+        boolean done = false;
+        while (!done) {
+            if (panel.clicked) {
+                if (!panel.remains.equals("")) {
+                    paint(panel.remains);
+                } else {
+                    System.out.println("Setting questions!!");
+
+                    ArrayList<Decision> decisions = internal.getDecisions();
+                    String[] questions = new String[decisions.size()];
+                    
+                    int i = 0;
+                    for (Decision decision : decisions) {
+                        questions[i] = decision.getDescription();
+                        i++;
+                    }
+                    panel.setQuestions(questions);
+                    //call paint component or something 
+                }
+
+                if (!panel.selectedAnswer.equals("")) {
+                    System.out.println("xxxxxxxxxx answer was selected!!!");
+                    main.nextStep(panel.selectedAnswer);  // This never really returns, so uh.. that's kinda shitty no?
+                    panel.cleanupQuestions();
+                }
+
+                panel.clicked = false;
+            }
+
+            // dont remove this or things wont work (cuz busy waiting fucks with key presses?)
+            try {
+                Thread.sleep(30);
+            } catch (Exception e) {
+            }
+        }
     }
 
     public void DisplayEndDialouge() {
@@ -239,7 +306,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
             questionBox = ImageIO.read(new File("res/questionBox.png"));
             questionBoxHighlight = ImageIO.read(new File("res/questionBoxHighlight.png"));
         } catch (IOException e) {
-            System.err.println("Couldn't load background!");
+            System.err.println("Couldn't load boxes!");
         }
 
         this.addMouseMotionListener(this);
@@ -269,13 +336,6 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
         graphics.dispose();
         bufferStrat.show();
 
-        if (!remains.isEmpty()) {
-            try {
-                Thread.sleep(30);
-            } catch (Exception e) {
-            }
-            System.exit(0);
-        }
     }
 
     public void setQuestions(String[] questions) {
@@ -303,9 +363,10 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     private void drawQuestions(String[] questions, Graphics2D graphics) {
-
+        System.out.println("drawing questions!");
+        
         for (QuestionBox questionbox : questionBoxes) {
-
+            System.out.println("drawing specific questions!!");
             // draw highlighted box if mouse is hovering over it, otherwise draw regular box
             if (mouseInRect(questionbox.x, questionbox.y, questionbox.w, questionbox.h)) {
                 graphics.drawImage(questionBoxHighlight, questionbox.x, questionbox.y, null);
@@ -406,7 +467,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
                     //System.out.println(questions[questBox.index]);
                 }
             }
-        } else { //TODO: replace setQuestions with clicked = true here!
+        } else {
             clicked = true;
         }
     }

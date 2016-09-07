@@ -8,11 +8,11 @@ import javafx.util.Pair;
  */
 public class Main {
 
-    private Layout lt;
+    public Layout layout;
     private HashSet<Pair<String,String>> titles;
 
     public Main() {
-        this.lt = new Layout(this);
+        this.layout = new Layout(this);
         this.titles = new HashSet<Pair<String,String>>();
     }
     
@@ -24,7 +24,7 @@ public class Main {
     public void nextStep(String path){
         Internal a = TXTReader.readTXT(path);
         rememberTitle(a.getTitle(), a.getAuthor());
-        lt.display(a);
+        layout.display(a);
     }
     
     public void rememberTitle(String title, String author){
@@ -32,7 +32,7 @@ public class Main {
     }
     
     public void endGame(){
-        lt.close();
+        layout.close();
         System.exit(0);
     }
     
@@ -41,7 +41,7 @@ public class Main {
         //Du hast alle titel und autoren in der titles variable, gesetzt von rememberTitle
         for (Pair<String,String> pair : titles){
             //do something with the information, probably call
-            lt.displayQuestion();
+            layout.displayQuestion();
             //with some parameters or stuff...
         }
     }
