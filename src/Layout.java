@@ -45,6 +45,9 @@ public class Layout {
     myPanel panel;
     BufferStrategy bufferStrat;
 
+    Internal internal;
+    String pathToStories = "res/Stories/";
+
     BufferedImage background;
     BufferedImage textBox;
 
@@ -59,6 +62,8 @@ public class Layout {
 
     public Layout(Main main) {
         this.main = main;
+
+        init();
     }
 
     public void initCursor() {
@@ -230,7 +235,7 @@ public class Layout {
 
         Main main = new Main();
         Layout layout = main.layout;
-        layout.init();
+        // layout.init();
 
         layout.displayQuestion("Leo", "Test");
         layout.displayQuestion("Johannes", "Test2");
@@ -239,6 +244,7 @@ public class Layout {
     }
 
     public void display(Internal internal) {
+        this.internal = internal;
         //TODO Andi
         //Hab einfach mal alle beschreibenden Kommentare hier rein gepasted
 
@@ -296,7 +302,7 @@ public class Layout {
                     System.out.println("xxxxxxxxxx answer was selected!!!" + selectedAnswer);
 
                     //DisplayEndDialogue();
-                    main.nextStep(selectedAnswer);  // This never really returns, so uh.. that's kinda shitty, no?
+                    main.nextStep(this.pathToStories + getPathToAnswer(selectedAnswer).trim());  // This never really returns, so uh.. that's kinda shitty, no?
                 }
 
                 panel.clicked = false;
@@ -310,6 +316,17 @@ public class Layout {
             } catch (Exception e) {
             }
         }
+    }
+
+    public String getPathToAnswer(String answer) {
+        for (Decision decision : this.internal.getDecisions()) {
+            if (answer.equals(decision.getDescription())) {
+                return decision.getDestinationPath();
+            }
+        }
+
+        System.err.println("Path for answer '" + answer + "' doesn't exist!");
+        return "";
     }
 
     public void DisplayEndDialogue() {
@@ -399,7 +416,7 @@ public class Layout {
 
 class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
-    Font questionFont = new Font("Consolas", Font.ITALIC, 30);
+    Font questionFont = new Font("Consolas", Font.PLAIN, 30);
     BufferedImage textBox;
     BufferedImage behindQuestionOverlay;
     BufferedImage questionBox;
@@ -500,7 +517,30 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
                 graphics.drawImage(questionBox, questionbox.x, questionbox.y, null);
             }
 
-            graphics.drawString(questions[questionbox.index], 325, questionbox.y + 45);
+            String textToDraw = questions[questionbox.index];
+
+            int textSize = getTextSize(textToDraw, graphics);
+            configureFont(graphics); //sets font back to 30
+            
+            int fontSize = 25;
+            while (textSize > 1080 - 325) {
+                Font newFont = new Font("Consolas", Font.PLAIN, fontSize);
+                graphics.setFont(newFont);
+                graphics.setRenderingHint(
+                        RenderingHints.KEY_TEXT_ANTIALIASING,
+                        RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+
+                textSize = getTextSize(textToDraw, graphics, newFont);
+                fontSize -= 3;
+                
+                System.out.println(textSize);
+                if (fontSize < 5) {
+                    System.exit(0);
+                    break;
+                }
+            }
+
+            graphics.drawString(textToDraw, 275, questionbox.y + 45);
         }
     }
 
@@ -573,6 +613,12 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
         return metrics.stringWidth(text) + 2;
     }
 
+    private int getTextSize(String text, Graphics2D graphics, Font font) {
+        FontMetrics metrics = graphics.getFontMetrics(font);
+
+        return metrics.stringWidth(text) + 2;
+    }
+    
     @Override
     public void mouseMoved(MouseEvent e) {
         currentMouseX = e.getX();

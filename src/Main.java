@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main m = new Main();
-        m.nextStep("intro01.txt");
+        m.nextStep("res/Stories/DB_Bö_002_1.txt");
     }
 
     public void nextStep(String path) {

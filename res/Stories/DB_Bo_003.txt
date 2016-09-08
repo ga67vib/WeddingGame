@@ -1,0 +1,14 @@
+Anmerkungen: " "
+Autor: Dunkle Baronin
+Titel: Bö und der Zwang
+Bild: 
+Musik: 
+@
+Je länger du über diese Möglichkeit nachdenkst, desto plausibler erscheint sie dir. War auf der Party nicht tatsächlich ein merkwürdiger Mann mit einem Klumpfuß gewesen?
+Du machst ein paar weitere Schritte in Richtung Wäschekorb.
+Ja, dieser Mann mit den vielen Putzlappen. Du hast gedacht, er gehört zum Reinigungspersonal und hast gehofft, Alex würde ihn nicht bemerken. Dann schreckst du aus deinen Gedanken hoch, als du dir den Zeh am Wäschekorb stößt.
+"Verdammtes Ding!", rufst du aus. Aber wo du schon mal da bist, wirfst du einen Blick auf die Wäsche. "Tatsache, das ist wirklich dringend", stellst du fest.
+@
+E1: Da dir der Ernst der Lage klar geworden ist, begibst du dich unverzüglich zur Waschmaschine > DB_Bö_004.txt
+E2: Man soll Zwänge überwinden. Das sagten schon die alten Philosophen > DB_Bö_010.txt
+E3: Dir ist klar, dass du spielend mit diesem Zwang fertig wirst, aber schließlich hat Alex dich gebeten, die Wäsche zu waschen > DB_Bö_020.txt
