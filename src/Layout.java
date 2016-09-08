@@ -25,6 +25,7 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,6 +38,7 @@ import sun.audio.ContinuousAudioDataStream;
  *
  * @author Andi
  */
+//TODO: Get relative path to stories from internal or something, fix audio, get sb to fix umlauts during loading of files, limit buttons for quiz
 public class Layout {
 
     Main main;
@@ -358,10 +360,49 @@ public class Layout {
         }
     }
 
+    public String getRandomElem(String[] array) {
+        int rnd = new Random().nextInt(array.length);
+        return array[rnd];
+    }
+
+    public boolean isInArray(String elem, String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                return false;
+            }
+
+            if (array[i].equals(elem)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void displayQuestion(String author, String title) {
         //TODO: Select random names from list (except author), then add author. Can't display all names at once.
 
+        String[] possibleAuthors = {"Leo", "Conny", "Klara", "Johannes", "Maxi", "Jakob", "Andi", "Linda", "Koko", "Sonja"};
+        int[] randomAuthors = new int[4];
+        String[] selectedAuthors = new String[5];
+
+        for (int i = 0; i < randomAuthors.length; i++) {
+            String rndAuth = getRandomElem(possibleAuthors);
+
+            //keep selecting random authors until there's no duplicates and it's not the real author
+            while (rndAuth.equals(author) || isInArray(rndAuth, selectedAuthors)) {
+                rndAuth = getRandomElem(possibleAuthors);
+            }
+            selectedAuthors[i] = rndAuth;
+        }
+
+        // determine position of real author randomly; move one random position author to pos5 and then real author to their position
+        int rnd = new Random().nextInt(selectedAuthors.length - 1);
+        selectedAuthors[selectedAuthors.length - 1] = selectedAuthors[rnd];
+        selectedAuthors[rnd] = author;
+
         String textToPaint = "Von wem ist die Geschichte mit Titel " + title + "?";
+
         while (true) {
             paint(textToPaint);
 
@@ -376,8 +417,7 @@ public class Layout {
             }
         }
 
-        String[] questions = {"Leo", "Conny", "Klara", "Johannes", "Maxi", "Jakob", "Andi", "Linda", "Deine Mutter"};
-        panel.setQuestions(questions);
+        panel.setQuestions(selectedAuthors);
 
         boolean done = false;
         while (!done) {
@@ -521,7 +561,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
             int textSize = getTextSize(textToDraw, graphics);
             configureFont(graphics); //sets font back to 30
-            
+
             int fontSize = 25;
             while (textSize > 1080 - 325) {
                 Font newFont = new Font("Consolas", Font.PLAIN, fontSize);
@@ -532,7 +572,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
                 textSize = getTextSize(textToDraw, graphics, newFont);
                 fontSize -= 3;
-                
+
                 System.out.println(textSize);
                 if (fontSize < 5) {
                     System.exit(0);
@@ -618,7 +658,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
 
         return metrics.stringWidth(text) + 2;
     }
-    
+
     @Override
     public void mouseMoved(MouseEvent e) {
         currentMouseX = e.getX();
