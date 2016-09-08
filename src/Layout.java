@@ -38,7 +38,7 @@ import sun.audio.ContinuousAudioDataStream;
  *
  * @author Andi
  */
-//TODO: Get relative path to stories from internal or something, fix audio, get sb to fix umlauts during loading of files, limit buttons for quiz
+//TODO: Get relative path to stories from internal or something, fix audio[play works, loop doesnt], get sb to fix umlauts during loading of files
 public class Layout {
 
     Main main;
@@ -103,10 +103,30 @@ public class Layout {
         try {
             InputStream in = new FileInputStream(soundFile);
 
+            // create an audiostream from the inputstream
+            AudioStream audioStream = new AudioStream(in);
+
+            // play the audio clip with the audioplayer class
+            AudioPlayer.player.start(audioStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Something with the audio failed; check filename & if file is really there: " + path);
+        }
+    }
+
+    private void loopAudioFile(String path) {
+        stopMusic(); //stops previous music if it exists
+
+        String soundFile = path;
+        try {
+            InputStream in = new FileInputStream(soundFile);
+
             // create an audiostream from the inputstream, turn into audiodata and then into continuous stream for looping
             AudioStream audioStream = new AudioStream(in);
-            AudioData audiodata = audioStream.getData();
+            AudioData audiodata = audioStream.getData(); //hier bugts
+            System.out.println("x");
             ContinuousAudioDataStream loopMusic = new ContinuousAudioDataStream(audiodata);
+            System.out.println("x");
 
             // play the audio clip with the audioplayer class
             AudioPlayer.player.start(loopMusic);
@@ -114,6 +134,7 @@ public class Layout {
 
             // AudioPlayer.player.stop(audioStream);  // stops the audiostream sound
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println("Something with the audio failed; check filename & if file is really there: " + path);
 
             try {
