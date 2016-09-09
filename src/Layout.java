@@ -395,10 +395,12 @@ public class Layout {
 
                 if (selectedAnswer.equals("Neustart")) {
                     main.nextStep("Intro001.txt");
+                    done=true;
                 } else if (selectedAnswer.equals("Ende")) {
                     main.endGame();
                 } else if (selectedAnswer.equals("Quiz")) {
                     main.startQuiz();
+                    done=true;
                 }
             }
             paint(" ");

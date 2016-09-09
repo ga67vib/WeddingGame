@@ -4,7 +4,7 @@ import java.util.HashSet;
 import javafx.util.Pair;
 import javax.swing.JOptionPane;
 
-/**
+/** 
  *
  * @author Maxi
  */
@@ -21,7 +21,9 @@ public class Main {
     public static void main(String[] args) {
         Main m = new Main();
         m.nextStep("res/Stories/MaxiIntro1.txt");
-        m.layout.DisplayEndDialogue();
+        while(true){
+            m.layout.DisplayEndDialogue();
+        }
     }
 
     public void nextStep(String path) {
