@@ -326,7 +326,6 @@ public class Layout {
                         } else if (x == internal.getStory().size() - 1) {
                             ArrayList<Decision> decisions = internal.getDecisions();
                             if(decisions.isEmpty()) {
-                                System.out.println("reached end of story!");
                                 return; // reached the end of the story
                             }
                             
@@ -347,7 +346,6 @@ public class Layout {
 
                             //DisplayEndDialogue();
                             main.nextStep(this.pathToStories + getPathToAnswer(selectedAnswer).trim());
-                            System.out.println("reached return after a nextStep");
                             return;  // we reach this return at the end of the story
                         }
 
