@@ -435,7 +435,7 @@ public class Layout {
     public void displayQuestion(String author, String title) {
         //TODO: Select random names from list (except author), then add author. Can't display all names at once.
 
-        String[] possibleAuthors = {"Leo", "Conny", "Klara", "Johannes", "Maxi", "Jakob", "Andi", "Linda", "Koko", "Sonja"};
+        String[] possibleAuthors = {"Leo", "Conny", "Dunkle Baronin", "Sonja/Johannes", "Maxi", "Jakob", "Andi", "Linda", "Koko", "Julia"};
         int[] randomAuthors = new int[4];
         String[] selectedAuthors = new String[5];
 
