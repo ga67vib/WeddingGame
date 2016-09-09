@@ -77,11 +77,21 @@ public class Layout {
     }
 
     public void setBackground(String path) {
+        String defaultPath = "res/background.png";
+
         try {
-            background = ImageIO.read(new File(path));
+            if (path.equals(" ") || path.equals("")) {
+                try {
+                    background = ImageIO.read(new File(defaultPath));
+                } catch (Exception e52) {
+                    System.err.println("Couldn't even load default background, RIP");
+                }
+            } else {
+                background = ImageIO.read(new File(path));
+            }
+
         } catch (IOException e) {
-            String defaultPath = "res/background.png";
-            System.err.println("Couldn't load background! Loading default background at " + defaultPath + " instead!");
+            System.err.println("Couldn't load background at " + path + "! Loading default background at " + defaultPath + " instead!");
             try {
                 background = ImageIO.read(new File(defaultPath));
             } catch (Exception e2) {
@@ -98,6 +108,10 @@ public class Layout {
 
     private void playAudioFile(String path) {
         stopMusic(); //stops previous music if it exists
+
+        if (path.equals(" ") || path.equals("")) {
+            return;
+        }
 
         String soundFile = path;
         try {
@@ -188,7 +202,7 @@ public class Layout {
     public void paint(String text) {
         Graphics2D graphics = (Graphics2D) panel.getGraphics();
 
-        panel.paintComponent(text, bufferStrat, background);
+        panel.paintComponent(text + " ", bufferStrat, background);
 
         try {
             Thread.sleep(30);
@@ -296,47 +310,60 @@ public class Layout {
             } catch (Exception e) {
             }
         }
-        paint(internal.getStory().get(0));
 
-        boolean done = false;
-        while (!done) {
-            String textToDraw = panel.currentlyDrawnText;
+        while (true) {
 
-            if (panel.clicked) {
-                if (!panel.remains.equals("")) {
-                    textToDraw = panel.remains;
-                } else {
+            for (int x = 0; x < internal.getStory().size(); x++) {
+                paint(internal.getStory().get(x));
 
-                    ArrayList<Decision> decisions = internal.getDecisions();
-                    String[] questions = new String[decisions.size()];
+                boolean done = false;
+                while (!done) {
+                    String textToDraw = panel.currentlyDrawnText;
 
-                    int i = 0;
-                    for (Decision decision : decisions) {
-                        questions[i] = decision.getDescription();
-                        i++;
+                    if (panel.clicked) {
+                        if (!panel.remains.equals("")) {
+                            textToDraw = panel.remains;
+                        } else if (x == internal.getStory().size() - 1) {
+                            ArrayList<Decision> decisions = internal.getDecisions();
+                            if(decisions.isEmpty()) {
+                                System.out.println("reached end of story!");
+                                return; // reached the end of the story
+                            }
+                            
+                            String[] questions = new String[decisions.size()];
+
+                            int i = 0;
+                            for (Decision decision : decisions) {
+                                questions[i] = decision.getDescription();
+                                i++;
+                            }
+                            panel.setQuestions(questions);
+                            //call paint component or something 
+                        }
+
+                        if (!panel.selectedAnswer.equals("")) {
+                            String selectedAnswer = panel.selectedAnswer;
+                            panel.cleanupQuestions();
+
+                            //DisplayEndDialogue();
+                            main.nextStep(this.pathToStories + getPathToAnswer(selectedAnswer).trim());
+                            System.out.println("reached return after a nextStep");
+                            return;  // we reach this return at the end of the story
+                        }
+
+                        panel.clicked = false;
+                        done = true;
                     }
-                    panel.setQuestions(questions);
-                    //call paint component or something 
+
+                    paint(textToDraw);
+                    System.out.println(x);
+
+                    // dont remove this or things wont work (cuz busy waiting fucks with key presses?)
+                    try {
+                        Thread.sleep(30);
+                    } catch (Exception e) {
+                    }
                 }
-
-                if (!panel.selectedAnswer.equals("")) {
-                    String selectedAnswer = panel.selectedAnswer;
-                    panel.cleanupQuestions();
-                    System.out.println("xxxxxxxxxx answer was selected!!!" + selectedAnswer);
-
-                    //DisplayEndDialogue();
-                    main.nextStep(this.pathToStories + getPathToAnswer(selectedAnswer).trim());  // This never really returns, so uh.. that's kinda shitty, no?
-                }
-
-                panel.clicked = false;
-            }
-
-            paint(textToDraw);
-
-            // dont remove this or things wont work (cuz busy waiting fucks with key presses?)
-            try {
-                Thread.sleep(30);
-            } catch (Exception e) {
             }
         }
     }
@@ -594,7 +621,6 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
                 textSize = getTextSize(textToDraw, graphics, newFont);
                 fontSize -= 3;
 
-                System.out.println(textSize);
                 if (fontSize < 5) {
                     System.exit(0);
                     break;

@@ -1,0 +1,12 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: Musik/https://www.youtube.com/watch?v=NrS523dOHU4
+@
+Du hast folgende Attacken:
+@
+E1: Tackle > MiMinit.txt
+E2: Schnarcher > MiMSieg.txt
+E3: Rutenschlag > MiMinit.txt
+E4: Genesung > MiMinit.txt

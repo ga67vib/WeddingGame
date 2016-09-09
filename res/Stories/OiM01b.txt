@@ -1,0 +1,20 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Oscar im Müll
+Bild: Bilder/oscar.jpg
+Musik: Musik/oscar.mp3
+@
+Weil Oscar heute einen herausragend guten Tag hat, singt er das Lied nochmal für dich.
+
+Das ist sehr nett von ihm, oder?
+
+Du solltest dir das Lied diesmal komplett anhören.
+
+Und unbedingt beim Refrain mitsingen!
+
+"Ich mag Müll!"
+
+Hast du dir das Lied diesmal angehört und ganz laut mitgesungen?
+@
+E1: Ja, natürlich. > OiM02b.txt
+E2: Nein, doch keinen Bock. > OiM05.txt

@@ -1,0 +1,12 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Oscar im Müll
+Bild: 
+Musik: 
+@
+Oscar öffnet seinen Deckel und blafft dich an, warum du nochmal klopfst. 
+
+Willst du jetzt das Lied anhören, und beim Refrain laut mitsingen?
+@
+E1: Ja. > OiM01b.txt
+E2: Nein. > OiM05.txt

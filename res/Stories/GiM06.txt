@@ -1,0 +1,16 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: gnomAufTonne.jpg
+Musik: 
+@
+"Hey, ganz ruhig. War nicht böse gemeint. Ich brauch' keine aufs Maul.", versuchst du den Gnom zu beruhigen.
+"Da bin ich aber ganz anderer Meinung!", ranzt der Gnom zurück. 
+
+"Ganz ehrlich, ich war nur überfordert, Gnome in meinem Müll zu finden.", probierst du es weiter.
+"Dass du leicht überfordert bist, sieht man!", beleidigt er dich.
+
+Was sagst du?
+@
+E1: "Ich will mich nicht streiten, ehrlich" > GiM02b.txt
+E2: "Halt mal deine Fresse, du Zwerg!" > GiM07b.txt

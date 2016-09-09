@@ -1,0 +1,19 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Das Albtraum-Monster klettert langsam aus der Mülltonne. Seine Arme werden von ekligen Sehnen überzogen. Es sieht noch schlimmer aus, als du es dir je erträumt hast.
+
+Mit einem Klatschen landen die Füße des Monsters auf dem Pflaster vor der Mülltonne, und etwas Speichel tropft aus seinem Mund. 
+Du kneifst dich in den Arm, spürst den Schmerz, und die kalte Erkenntnis, dass das hier kein Traum ist, packt deine Eingeweide. 
+Du spürst, wie sich in deinem Inneren alles zusammenzieht.
+
+Schlurfend kommt das Monster näher, und blickt dir direkt in die Augen. Du bist gefangen von dem eiskalten, gefühllosen Blick.
+In deine Nase tritt ein Geruch von Moder, von Verderben, von Tod.
+
+Du nimmst all deinen Wilen zusammen, reißt dich von dem Anblick los, und
+@
+E1: streckst mutig die Hand nach dem Monster aus > MiM03.txt
+E2: rennst davon so schnell du kannst > MiM05.txt

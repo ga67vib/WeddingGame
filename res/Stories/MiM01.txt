@@ -1,0 +1,12 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Müll wegbringen Intro
+Bild: 
+Musik: 
+@
+Du betrachtest die Tonne aus gebührendem Abstand. Sie wackelt immer stärker hin und her, und aus ihrem Inneren dringen knurrige Geräusche.
+
+Dann öffnet sich der Deckel, und heraus schaut
+@
+E1: ein Monster, direkt aus deinem schlimmsten Albtraum! Panik! > MiM02.txt
+E2: ... Oscar? Aus der Sesamstraße? > OiM01.txt

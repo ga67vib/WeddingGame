@@ -1,0 +1,12 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: Musik/https://www.youtube.com/watch?v=NrS523dOHU4
+@
+Ein wildes Albtraummonster greift an.
+@
+E1: KAMPF > MiMkampf.txt
+E2: BEUTEL > MiMbeutel.txt
+E3: POKéMON > MiMpkmn.txt
+E4: FLUCHT > MiM05.txt

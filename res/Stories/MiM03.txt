@@ -1,0 +1,21 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Du streckst todesmutig die Hand nach dem Monster aus.
+
+Es schnüffelt an der Hand, und ein knurrender Laut entfährt seinem Inneren. 
+Du schließt mit der Welt ab, und bereust deine Entscheidung.
+
+Das Monster öffnet seinen Mund, und ein bestialischer Gestank schlägt dir entgegen. 
+Du schließt deine Augen und spürst wie dir das Maul des Monsters immer näher kommt.
+
+Dann berührt etwas Feuchtes deine Hand.
+
+Du hörst ein Sabbern und ein Hecheln.
+Das Monster kauert vor dir und schleckt deine Hand ab. 
+@
+E1: Du streichelst das Monster. > MiM03cont.txt
+E2: Du ziehst angewidert deine Hand weg. > MiMfail.txt

@@ -1,0 +1,16 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: 
+Musik: 
+@
+Vorsichtig öffnest du den Deckel der Mülltonne.
+
+Darinnen siehst du einige Dutzend kleiner Gnome, die mit ihren winzigen Schwertern ein Loch in die stinkende Mülltüte geschnitten haben. Sie bilden eine Kette, und räumen die Tüte Stück für Stück aus. Bananenschalen, Plastik, Taschentücher, was auch immer aus der Tüte kommt, wird weitergereicht, bis es durch ein Loch am Boden der Tonne aus deinem Sichtfeld verschwindet. 
+
+Es sieht sehr witzig, aber auch süß aus, wie die kleinen Gnome mit ernstem Gesicht deinen Müll durchwühlen und abtransportieren.
+
+Was willst du tun?
+@
+E1: Die Gnome ansprechen > GiM02.txt
+E2: Bei dem Anblick in unwillkürliches Gelächter ausbrechen > GiM03.txt

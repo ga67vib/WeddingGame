@@ -1,0 +1,14 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Du verlernst nichts, aber du lernst auch keine neue Attacke. Schade, vielleicht wäre sie praktisch gewesen.
+
+Das Monster ist in die Mülltonne geflüchtet. Nachdem es ja scheinbar Angst vor dir hat, wäre jetzt ein guter Zeitpunkt, es zu vertreiben.
+
+Was willst du tun?
+@
+E1: In die Mülltonne heineinschauen > OiM6.txt
+E2: Die Mülltonne umtreten > MiMfail.txt

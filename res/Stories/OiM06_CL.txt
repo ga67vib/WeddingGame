@@ -1,0 +1,20 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Dimensionsloch
+Bild: 
+Musik: 
+@
+Du legst deine Hand an den Griff des Mülltonnendeckels. Ein seltsamer Geruch kommt dir in die Nase.
+
+"Genff.", sagt eine Stimme in deinem Kopf. "Es riecht irgendwie nach Genff."
+Du öffnest die Tonne, und erblickst unendliche Schwärze. 
+Erschrocken willst du von der Mülltonne zurückweichen, aber bevor du einen Schritt machen kannst, wird die Mülltonne von der Schwärze eingesaugt.
+
+"Genau, wie als mein Subwoofer neulich die Katze inhaliert hat.", denkst du unpassenderweise noch, bevor auch du in den Sog des Dimensionsloches gerätst.
+
+Was willst du tun?
+@
+E1: Dich deinem Schicksal ergeben > smT.txt
+E2: Panisch versuchen zu entkommen > cross link möglich GENAU HIER
+E3: In die Schwärze hineinspringen > fan01.txt
+E4: Über die Schwärze drüber springen > OiMfail.txt

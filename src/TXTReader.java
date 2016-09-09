@@ -61,8 +61,10 @@ public class TXTReader {
         }
         line = br.readLine();
         while (!line.equals("@")) {
-            story.add(line);
-            System.out.println("story: " + line);
+            if (!line.equals("")) {
+                story.add(line);
+                System.out.println("story: " + line);
+            }
             line = br.readLine();
         }
 

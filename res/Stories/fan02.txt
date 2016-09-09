@@ -1,0 +1,20 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: In der Höhle
+Bild: 
+Musik: 
+@
+Blind tastest du in deiner Umgebung herum. Es fühlt sich sandig an. Der Sand knirscht unter deinen Fingern.
+
+Du drehst dich auf den Bauch und tastest weiter. Deine Finger erreichen etwas kühles, kreisrundes. Vorsichtig öffnest du ein Auge und betrachtest deinen Fund.
+
+Es ist ein Ring, der dir auf Anhieb gut gefällt. Egal, was sonst alles schlecht ist, du bist froh, jetzt hier zu sein und diesen Ring zu haben. Dafür hat sich alles gelohnt. Und du wirst ihn nie mehr hergeben.
+
+"Wohohoho, fett.", entfährt dir ein selbstzufriedenes Lachen, während du den Ring betrachtest.
+
+"Halt, stehenbleiben!", ertönt da eine Stimme.
+
+Du 
+@
+E1: bleibst, wo du bist. > fan05.txt
+E2: rennst davon > fan03.txt

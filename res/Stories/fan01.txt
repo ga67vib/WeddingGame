@@ -1,0 +1,16 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: In der Höhle
+Bild: 
+Musik: 
+@
+Du wachst auf.
+
+Woran genau du merkst, dass du aufwachst, weißt du nicht. Vielleicht, weil dein Hirn wieder anfängt, zu arbeiten.
+Aber deine Augen, Ohren, Nase und sonstige Sinnesorgane sind noch nicht wieder aktiv.
+
+Du beschließt, diesen Umstand zu ändern, aber deine dröhnenden Kopfschmerzen hindern dich ein Stück weit an der Umsetzung.
+Trotzdem reißt du dich zusammen und
+@
+E1: öffnest die Augen > todo
+E2: tastest deine Umgebung ab. > fan02.txt

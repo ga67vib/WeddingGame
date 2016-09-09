@@ -19,7 +19,8 @@ public class Main {
 
     public static void main(String[] args) {
         Main m = new Main();
-        m.nextStep("res/Stories/DB_Bö_002_1.txt");
+        m.nextStep("res/Stories/MaxiIntro1.txt");
+        m.startQuiz();
     }
 
     public void nextStep(String path) {
@@ -47,7 +48,7 @@ public class Main {
         //Du hast alle titel und autoren in der titles variable, gesetzt von rememberTitle
         for (Pair<String, String> pair : titles) {
             //do something with the information, probably call
-            layout.displayQuestion();
+            layout.displayQuestion(pair.getValue(), pair.getKey());
             //with some parameters or stuff...
         }
     }

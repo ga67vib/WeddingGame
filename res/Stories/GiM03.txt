@@ -1,0 +1,19 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: 
+Musik: 
+@
+Du lachst los, weil die Gnome bei ihrer Arbeit so verkniffen konzentriert schauen, und beim gehen so witzig mit dem Kopf wackeln, und weil die Situation überhaupt viel zu absurd ist, um nicht einfach zu lachen.
+
+Plötzlich verspürst du einen stechenden Schmerz an deinem Schienbein. Du siehst runter und erblickst einen riesigen Gnom (was nicht heißt, dass er groß ist. Nur für einen Gnom ist er riesig.)
+"Paar aufs Maul?!", pöbelt er mit einer Stimme, die viel zu tief für dieses kleine Wesen ist.
+
+Dein Gesicht befindet sich zwischen einem Zustand höchster Erheiterung und großen Schmerzes. Das sieht sehr dämlich aus, und der Gnom nimmt es als Bejahen seiner Frage.
+
+"Ok, kriegst du", röhrt der Gnom, und klettert die Mülltonne hoch, um auf Höhe deines Gesichts zu kommen. 
+
+Was willst du tun?
+@
+E1: Den Gnom besänftigen > GiM06.txt
+E2: Es dem kleinen Kerl so richtig zurück geben > GiM07.txt

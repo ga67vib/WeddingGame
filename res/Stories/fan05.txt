@@ -1,0 +1,17 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: In der Höhle
+Bild: 
+Musik: 
+@
+Du bleibst, wo du bist, und schaust zu der Stimme.
+
+Gollum kommt auf dich zugeklettert. "Du hast ihn! Gib ihn mir, mein Schatsss!", geifert er, und schiebt sein typisches Husten nach "Ollum! Ollum!"
+"Wen hab ich?", fragst du scheinheilig, und lässt den Ring in deiner Tasche verschwinden.
+
+"Ein Rätsel!", freut sich Gollum. "Es muss zuerst. Los, lass es ein Rätsel sagen!"
+
+Du verstehst, dass "es" du bist, und stellst ihm folgendes Rätsel:
+@
+E1: "Was habe ich in meiner Tasche?" > fan06.txt
+E2: "Wo ist hier der Ausgang?" > fan07.txt

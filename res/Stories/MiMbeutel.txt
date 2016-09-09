@@ -1,0 +1,9 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Du schaust in deinen Beutel. Allerdings ist er leer.
+@
+E1: Zurück > MiM04.txt

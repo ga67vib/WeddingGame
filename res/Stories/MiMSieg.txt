@@ -1,0 +1,18 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Du verwendest Schnarcher.
+
+Die Attacke ist sehr effektiv.
+
+Albtraummonster wurde besiegt.
+
+Du versuchst, eine neue Attacke zu erlernen. Aber du kannst dir nicht mehr merken, als du im Moment schon weißt. Wenn du die Attacke lernen willst, dann wirst du etwas vergessen.
+
+Möchtest du eine neue Attacke lernen?
+@
+E1: Ja > MiMja.txt
+E2: Nein > MiMnein.txt

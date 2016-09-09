@@ -1,0 +1,18 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: 
+Musik: 
+@
+"Was tut ihr denn da?", fragst du die Gnome.
+Sie halten in ihrer Arbeit inne, drehen alle ihren Kopf zu dir, schauen dir in die Augen und sagen unisono: "Wir arbeiten, wonach sieht es aus?".
+"Genau, wonach sieht es aus?", ruft ein alter Gnom hinterher, der etwas abseits der aufgeschnittenen Mülltüte steht. 
+
+Neben ihm steht eine noch älter aussehende Gnomin - Gnomdame - Gnomeuse... ein noch älter aussehender weiblicher Gnom. Die Alte breitet theatralisch die Arme aus und spricht:
+"Es herrscht Krieg zwischen den Reichen der Gnome. Alle Rohstoffe, die wir kriegen können, brauchen wir. Und diese Tüte, die Du wegwirfst und nicht mehr brauchst, kann eine ganze Scharmützeleinheit tagelang ernähren."
+
+Du nickst verständig, und die Alte fährt fort:
+"Wie wäre es mit einem Abkommen, Mensch? Du lieferst uns regelmäßig Deinen Müll, in bester Qualität, und du schmeißt auch mal Gegenstände aus Metall weg, und dafür wirst du nie wieder die Müllabfuhr kommen lassen müssen?"
+@
+E1: Das Abkommen schließen > GiM04.txt
+E2: Das Abkommen ablehnen > GiM05.txt

@@ -1,0 +1,25 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: 
+Musik: 
+@
+"Ich finde es eigentlich nicht so schlimm, wenn die Müllabfuhr kommt...", beginnst du vorsichtig.
+"Du wagst es!", brüllt die Alte, "Man schlägt einer Gnomschamanin nichts ab!"
+Sie beginnt, mit ihren Händen durch die Luft zu wirbeln, und du fühlst dich schwummerig, als hätte dir jemand große Mengen Alkohol direkt ins Gehirn injiziert. 
+
+Du willst den Deckel zurück auf die Tonne schlagen, aber deine Hände wollen dir nicht gehorchen.
+
+"Kommt, meine Brüder, wir müssen diesen unseligen Ort verlassen!", ruft die Schamanin. "Du..." Sie wendet sich wieder dir zu, und vollführt eine weitere Geste. Die Luft um sie schimmert inzwischen blau. 
+"Du wirst deine Strafe dafür bekommen, meine Großzügigkeit zu verschmähen!"
+
+Dein Kopf fühlt sich schlimmer an als bei jedem Rausch und Kater, den du je erlebst hast. Schlimmer als bei allen zusammen sogar.
+Das blaue Licht wird stärker.
+
+Was tust du?
+
+@
+E1: Ohnmächtig werden > MiM02b.txt
+E2: Die Hände auf die Augen pressen > MiM02b.txt
+E3: Die Hände auf die Ohren pressen > MiM02b.txt
+E4: Die Hände auf den Mund pressen > MiM02b.txt

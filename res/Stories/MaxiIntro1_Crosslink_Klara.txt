@@ -1,0 +1,17 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Müll wegbringen Intro
+Bild: 
+Musik: 
+@
+Du verziehst das Gesicht. Der Müllbeutel stinkt so sehr, dass du dir mit einer Hand die Nase zuhältst. Du willst ihn nur loswerden, weshalb du das Gestupse an deinen Füßen, wahrscheinlich eh nur Blätter oder Gras oder irgendetwas langweiliges, ignorierst. 
+
+Mit der anderen Hand vollführst du das Kunststück, die Mülltonne zu öffnen, während du die Tüte festhältst, um dann in einer fließenden Bewegung die Tüte in der Tonne zu versenken und den Deckel wieder zufallen zu lassen. Wenn Müll wegbringen eine olympische Sportart wäre, könntest du Gold gewinnen.
+
+Du hattest deinen Kopf während des Wegwerfens vom Gestank der Tüte, aber damit auch von der Mülltonne abgewendet. Als du jedoch ein Klackern in ihr hörst, siehst du doch hin. Die Mülltonne raschelt und rumpelt ein bisschen, und wackelt dabei merklich von rechts nach links.
+
+Was willst du tun?
+@
+E1: Nachschauen, was in der Tonne rumort > GiM01.txt
+E2: Die Tonne erstmal vorsichtig beobachten > MiM01.txt
+E3: Weggehen, das wird schon seine Richtigkeit haben > MaxiIntro2.txt

@@ -1,0 +1,21 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Du drehst dich um und rennst davon, so schnell du kannst. Hinter dir hörst du ein Jaulen. 
+Du siehst schnell über deine Schulter, und erblickst das Monster, das sich geifernd zur Jagd bereit macht.
+
+Du spurtest davon, um eine Ecke, um zwei Ecken, immer weiter, einfach nur weg.
+Du verlierst jegliches Raumgefühl. Eigentlich kennst du dich hier aus, aber alle Gassen kommen dir enger vor.
+Keine Ahnung, wo du bist, aber du hörst von überall her das Geifern, das Jaulen, das Knurren des Albtraummonsters.
+Hinter jeder Kurve vermutest du, in das Monster hinein zu laufen. Du siehst es schon lange nicht mehr, du hörst es nur, und du spürst es.
+Seinen Atem in deinem Nacken, seinen Speichel auf deiner Haut.
+
+Du rennst um eine Ecke und bist wieder daheim, an der Mülltonne. 
+Aber zum Glück ist das Monster nicht mehr hier. 
+
+@
+E1: Schnell hoch in die Wohnung! > MiM06.txt
+E2: Nur weg von hier! > MiM06.txt

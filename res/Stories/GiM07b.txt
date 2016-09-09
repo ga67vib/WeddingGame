@@ -1,0 +1,19 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Gnome im Müll
+Bild: gnomAufTonne.jpg
+Musik: 
+@
+"Halt mal deine Fresse, du Zwerg!", schleuderst du dem Gnom entgegen.
+"Hast du mich grade Zwerg genannt, du Müllsack?", ereifert sich der Gnom, und wedelt mit seiner Faust.
+
+"Dem zeig ich's", denkst du dir, und willst den Gnom in die Mülltonne schubsen. Er packt Deine Hand und verdreht dir brutal die Finger. 
+"Soweit kommts noch", röhrt er und drückt fester zu. 
+"Der feine Mensch kommt sich wohl ganz groß und schnell vor. Da sollte ihm mal eine Lektion erteilt werden."
+
+Er springt auf deine Schulter, hält dir die Augen zu und brüllt direkt in dein Ohr "Turturus!".
+Du verlierst die Kontrolle über deinen Körper und spürst, wie deine Beine nachgeben. Aus der Tonne hörst ein vielstimmiges Feiern der anderen Gnome "Turturus! Turturus!".
+
+Du willst dich grade fragen, was dieses blöde Wort bedeutet, doch da verlierst du das Bewusstsein.
+@
+E1: Dich deinem Schicksal ergeben > smT.txt

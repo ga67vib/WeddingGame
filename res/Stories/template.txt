@@ -1,0 +1,21 @@
+Anmerkungen: "Dieser Teil wird vom Programm ignoriert. 
+Bitte nicht mehr als 50 Zeichen bei den Entscheidungsmöglichkeiten. 
+Nicht mehr als 9 Entscheidungsmöglichkeiten. D
+er Text wird Stück für Stück dargestellt werden, Absatz für Absatz. 
+Crosslinks zu anderen Menschen mit uns nochmal absprechen. 
+Titel konstant durch eine Geschichte für Quiz dann am Ende."
+Autor: Peter
+Titel: Jagd auf die goldene Schildkröte
+Bild: Bilder/Bett.jpg
+Musik: Musik/track1.mp3
+@
+Lorem Ipsum gud shit
+
+Neuer Absatz, der erst nach einem Klick dargestellt wird. Muhahahahahahahahahahaha.
+(das hier ist kein neuer Absatz)
+
+Vielleicht ist das gar kein Absatz. Sondern Manuel Neuer. Ne, Spaß, ist ein Absatz.
+@
+E1: Gehe rechts > Peter003.txt
+E2: Folge der Kröte > Peter005.txt
+E3: Explodiere > ../Johannes/Johannes003.txt

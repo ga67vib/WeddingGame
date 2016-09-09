@@ -1,0 +1,14 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Das Monster hat den höheren INIT-Wert. Deswegen greift es zuerst an.
+
+Albtraummonster verwendet Ultimo.
+
+Du verlierst.
+
+Alles.
+@

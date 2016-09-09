@@ -1,0 +1,15 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: Musik/WilhelmScream.mp3
+@
+Du hörst ein Klatschen hinter dir und schreist.
+
+Du drehst dich um und siehst das Monster. 
+Weglaufen ist zwecklos, es findet dich!
+
+Es gibt nur noch eine Sache, die du tun kannst:
+@
+E1: Auf die Knie fallen und um dein Leben bitten. > MiMfail.txt
+E2: Das Monster angreifen. > MiM04.txt

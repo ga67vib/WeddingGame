@@ -1,0 +1,17 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Oscar im Müll
+Bild: 
+Musik: 
+@
+Oscar ist traurig, dass du nicht zuhören magst. 
+
+Da öffnet er sich schon für dich, und dann bist du so gemein zu ihm, und hörst nicht mal seinem Lied zu. Fies von dir.
+
+Oscar ist richtig stinkig. Außerdem ist er sauer auf dich, blafft dich nochmal an, und haut dann den Deckel seiner Mülltonne zu. 
+
+Was willst du tun?
+@
+E1: An der Mülltonne anklopfen. > OiM04.txt
+E2: Die Mülltonne öffnen. > OiM06_CL.txt
+E3: Weggehen > MaxiIntro2.txt

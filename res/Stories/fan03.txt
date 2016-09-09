@@ -1,0 +1,17 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: In der Höhle
+Bild: 
+Musik: 
+@
+Du springst auf und rennst du los, da hörst du die Stimme panisch rufen "Nicht Sie, der Türke! Der Türke!"
+
+"Friss das Bulle. Geber!" Die Antwort wird mit einem Schuss aus einer Shotgun unterstrichen. 
+
+Du rennst um eine Ecke und landest in einer Höhle, in der 6 kiffende Studenten vor ihren Computern sitzen.
+
+"Ey, schau mal, der hat ja den Ring!", sagt einer von ihnen. "Krass.", gibt ein anderer seine Meinung dazu.
+"Mach ma hier weiter LAN?", fragt dich der erste.
+@
+E1: "Ja, klar" > fan04.txt
+E2: "Was kifft ihr eigentlich" > fan04.txt

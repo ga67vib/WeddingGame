@@ -1,0 +1,16 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Oscar im Müll
+Bild: Bilder/oscar.jpg
+Musik: Musik/oscar.mp3
+@
+Oscar singt dir ein Lied vor.
+
+Das ist sehr nett von ihm, oder?
+
+Du solltest dir das Lied komplett anhören.
+
+Hast du dir das Lied schon komplett angehört?
+@
+E1: Ja, natürlich. > OiM02.txt
+E2: Nein, keinen Bock. > OiM03.txt

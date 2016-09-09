@@ -1,0 +1,22 @@
+Anmerkungen: ""
+Autor: Maxi
+Titel: Monster im Müll
+Bild: 
+Musik: 
+@
+Vorsichtig hebst du deine Hand. Das Monster sieht dich argwöhnisch an.
+(Du bist ein bisschen beeindruckt von dir selbst, dass du in dem Gesicht deines schlimmsten Albtraums jetzt schon Regungen und Gefühle erkennen kannst.)
+
+Du legst deine Finger auf die Haut des Monsters. Sie fühlt sich in keine Weise so an, wie du es dir vorgestellt hast. 
+Sie ist zwar ein bisschen unangenehm, aber nicht so abstoßend, wie man es von einem Albtraummonster erwarten würde. 
+
+Wieder entfährt dem Inneren des Monsters ein knurrendes Geräusch. Du nimmst deinen Mut zusammen, und fängst an, es trotzdem zu streicheln.
+
+Es knurrt stärker und schließt die Augen. Es schnurrt, und genießt es, dass du es berührst.
+
+Herzlichen Glückwunsch! Du hast grade ein missverstandenes Albtraummonster gezähmt. 
+
+Willst du
+@
+E1: es als Haustier nehmen? > MiM03cont2.txt
+E2: es wegschicken? > MiMfail.txt
