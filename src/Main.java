@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.HashSet;
 import javafx.util.Pair;
 
@@ -25,7 +26,7 @@ public class Main {
         Internal a = null;
         try {
             a = TXTReader.readTXT(path);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
         }
         rememberTitle(a.getTitle(), a.getAuthor());
