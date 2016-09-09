@@ -356,7 +356,6 @@ public class Layout {
                     }
 
                     paint(textToDraw);
-                    System.out.println(x);
 
                     // dont remove this or things wont work (cuz busy waiting fucks with key presses?)
                     try {

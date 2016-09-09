@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         Main m = new Main();
         m.nextStep("res/Stories/MaxiIntro1.txt");
-        m.startQuiz();
+        m.layout.DisplayEndDialogue();
     }
 
     public void nextStep(String path) {
