@@ -43,6 +43,7 @@ public class Main {
                 "Es ist ein sehr kritischer Fehler aufgetreten, sage uns einfach bescheid\nNachricht:\n"+e.toString(),
                 "Kritischer Fehler ist aufgetretten",
 		JOptionPane.WARNING_MESSAGE);
+            System.exit(0);
         }
         JOptionPane.showMessageDialog(null,
                 "Es ist ein Fehler aufgetreten, sage uns einfach bescheid;\nNachricht:\n"+e.toString(),
