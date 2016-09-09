@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main m = new Main();
-        m.nextStep("res/Stories/MaxiIntro1.txt");
+        m.nextStep("res/Stories/Intro1.txt");
         while(true){
             m.layout.DisplayEndDialogue();
         }
