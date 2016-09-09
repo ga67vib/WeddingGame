@@ -400,7 +400,7 @@ public class Layout {
                 panel.cleanupQuestions();
 
                 if (selectedAnswer.equals("Neustart")) {
-                    main.nextStep("res/stories/Intro01.txt");
+                    main.nextStep(Main.storyPath + "Intro01.txt");
                     done=true;
                 } else if (selectedAnswer.equals("Ende")) {
                     main.endGame();

@@ -12,6 +12,7 @@ public class Main {
 
     public Layout layout;
     private HashSet<Pair<String, String>> titles;
+    public static String storyPath = "res/Stories/";
 
     public Main() {
         this.layout = new Layout(this);
@@ -20,7 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main m = new Main();
-        m.nextStep("res/Stories/Intro1.txt");
+        m.nextStep(storyPath + "Intro01.txt");
         while(true){
             m.layout.DisplayEndDialogue();
         }
@@ -39,7 +40,7 @@ public class Main {
     
     private void fehlerhandling(String path,Exception e){
         System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
-        String errorpath="intro01.txt";
+        String errorpath=storyPath + "Intro01.txt";
         if(path.equals(errorpath)){
             JOptionPane.showMessageDialog(null,
                 "Es ist ein sehr kritischer Fehler aufgetreten, sage uns einfach bescheid\nNachricht:\n"+e.toString(),
