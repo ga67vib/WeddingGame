@@ -394,7 +394,7 @@ public class Layout {
                 panel.cleanupQuestions();
 
                 if (selectedAnswer.equals("Neustart")) {
-                    main.nextStep("Intro001.txt");
+                    main.nextStep("Intro01.txt");
                     done=true;
                 } else if (selectedAnswer.equals("Ende")) {
                     main.endGame();

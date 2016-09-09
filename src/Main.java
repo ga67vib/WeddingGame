@@ -39,7 +39,7 @@ public class Main {
     
     private void fehlerhandling(String path,Exception e){
         System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
-        String errorpath="error.txt";
+        String errorpath="intro01.txt";
         if(path.equals(errorpath)){
             JOptionPane.showMessageDialog(null,
                 "Es ist ein sehr kritischer Fehler aufgetreten, sage uns einfach bescheid\nNachricht:\n"+e.toString(),
