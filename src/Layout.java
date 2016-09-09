@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import sun.audio.AudioData;
@@ -200,9 +201,13 @@ public class Layout {
     }
 
     public void paint(String text) {
+        paint(text, true);
+    }
+
+    public void paint(String text, boolean showBoxes) {
         Graphics2D graphics = (Graphics2D) panel.getGraphics();
 
-        panel.paintComponent(text + " ", bufferStrat, background);
+        panel.paintComponent(text + " ", bufferStrat, background, showBoxes);
 
         try {
             Thread.sleep(30);
@@ -282,6 +287,7 @@ public class Layout {
 
     public void display(Internal internal) {
         this.internal = internal;
+        panel.clicked = false;
         //TODO Andi
         //Hab einfach mal alle beschreibenden Kommentare hier rein gepasted
 
@@ -298,7 +304,7 @@ public class Layout {
          */
         //display image only until click
         while (true) {
-            paint(" ");
+            paint(" ", false);
 
             if (panel.clicked) {
                 panel.clicked = false;
@@ -325,10 +331,10 @@ public class Layout {
                             textToDraw = panel.remains;
                         } else if (x == internal.getStory().size() - 1) {
                             ArrayList<Decision> decisions = internal.getDecisions();
-                            if(decisions.isEmpty()) {
+                            if (decisions.isEmpty()) {
                                 return; // reached the end of the story
                             }
-                            
+
                             String[] questions = new String[decisions.size()];
 
                             int i = 0;
@@ -400,7 +406,7 @@ public class Layout {
                     main.endGame();
                 } else if (selectedAnswer.equals("Quiz")) {
                     main.startQuiz();
-                    done=true;
+                    done = true;
                 }
             }
             paint(" ");
@@ -551,10 +557,14 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     public int currentMouseY = 0;
 
     public void paintComponent(String text, BufferStrategy bufferStrat, BufferedImage background) {
+        paintComponent(text, bufferStrat, background, true);
+    }
+
+    public void paintComponent(String text, BufferStrategy bufferStrat, BufferedImage background, boolean paintBoxes) {
         Graphics2D graphics = (Graphics2D) bufferStrat.getDrawGraphics();
         super.paintComponent(graphics);
 
-        paintBackgroundAndBoxes(graphics, background);
+        paintBackgroundAndBoxes(graphics, background, paintBoxes);
 
         configureFont(graphics);
         //AttributedString textAtt = new AttributedString(text, map);
@@ -564,7 +574,6 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
         drawQuestions(questions, graphics);
         graphics.dispose();
         bufferStrat.show();
-
     }
 
     public void setQuestions(String[] questions) {
@@ -682,8 +691,14 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background) {
+        paintBackgroundAndBoxes(graphics, background, true);
+    }
+
+    private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background, boolean paintBoxes) {
         graphics.drawImage(background, 0, 0, 1280, 720, null);
-        graphics.drawImage(textBox, 150, 50, null);
+        if (paintBoxes) {
+            graphics.drawImage(textBox, 150, 50, null);
+        }
     }
 
     private void configureFont(Graphics2D graphics) {
