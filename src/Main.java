@@ -47,7 +47,7 @@ public class Main {
         //Du hast alle titel und autoren in der titles variable, gesetzt von rememberTitle
         for (Pair<String, String> pair : titles) {
             //do something with the information, probably call
-            layout.displayQuestion();
+            layout.displayQuestion(pair.getValue(), pair.getKey());
             //with some parameters or stuff...
         }
     }
