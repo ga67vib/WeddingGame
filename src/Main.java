@@ -2,6 +2,7 @@
 import java.io.IOException;
 import java.util.HashSet;
 import javafx.util.Pair;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,11 +28,27 @@ public class Main {
         Internal a = null;
         try {
             a = TXTReader.readTXT(path);
-        } catch (IOException e) {
-            System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
+        } catch (Exception e) {
+            fehlerhandling(path,e);
         }
         rememberTitle(a.getTitle(), a.getAuthor());
         layout.display(a);
+    }
+    
+    private void fehlerhandling(String path,Exception e){
+        System.err.println(">>>path " + path + " not found, will lead to null pointer exception is a second!!");
+        String errorpath="error.txt";
+        if(path.equals(errorpath)){
+            JOptionPane.showMessageDialog(null,
+                "Es ist ein sehr kritischer Fehler aufgetreten, sage uns einfach bescheid\nNachricht:\n"+e.toString(),
+                "Kritischer Fehler ist aufgetretten",
+		JOptionPane.WARNING_MESSAGE);
+        }
+        JOptionPane.showMessageDialog(null,
+                "Es ist ein Fehler aufgetreten, sage uns einfach bescheid;\nNachricht:\n"+e.toString(),
+                "Kritischer Fehler ist aufgetretten",
+		JOptionPane.WARNING_MESSAGE);
+        nextStep(errorpath);
     }
 
     public void rememberTitle(String title, String author) {
