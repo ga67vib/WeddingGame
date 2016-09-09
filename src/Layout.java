@@ -327,7 +327,9 @@ public class Layout {
                     String textToDraw = panel.currentlyDrawnText;
 
                     if (panel.clicked) {
+                        done = true;
                         if (!panel.remains.equals("")) {
+                            done = false;
                             textToDraw = panel.remains;
                         } else if (x == internal.getStory().size() - 1) {
                             ArrayList<Decision> decisions = internal.getDecisions();
@@ -356,7 +358,7 @@ public class Layout {
                         }
 
                         panel.clicked = false;
-                        done = true;
+                        
                     }
 
                     paint(textToDraw);
