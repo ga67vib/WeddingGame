@@ -682,7 +682,7 @@ class myPanel extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     private void paintBackgroundAndBoxes(Graphics2D graphics, BufferedImage background) {
-        graphics.drawImage(background, 0, 0, null);
+        graphics.drawImage(background, 0, 0, 1280, 720, null);
         graphics.drawImage(textBox, 150, 50, null);
     }
 
